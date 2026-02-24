@@ -29,7 +29,9 @@ jobs:
         run: python main.py
 
       - name: Run PyTest
-        run: pytest tests/ -v
+        run: python -m pytest tests/ -v
+        env:
+          PYTHONPATH: ${{ github.workspace }}
 
       - name: Commit output files
         if: github.event_name == 'push'
