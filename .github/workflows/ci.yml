@@ -1,0 +1,45 @@
+name: CSV Processing CI Pipeline
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run CSV processing pipeline
+        run: python main.py
+
+      - name: Run PyTest
+        run: python -m pytest tests/ -v
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+      - name: Commit output files
+        if: github.event_name == 'push'
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add output/
+          git commit -m "Auto: processed CSV outputs [skip ci]" || echo "Nothing to commit"
+          git push origin HEAD:${GITHUB_REF_NAME}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
