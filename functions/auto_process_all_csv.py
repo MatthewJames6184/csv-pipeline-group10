@@ -10,7 +10,7 @@ def auto_process_all_csv_files():
     os.makedirs(output_folder, exist_ok=True)
     
     csv_files = [f for f in os.listdir(input_folder) if f.endswith(".csv")]
-    
+    #
     for file in csv_files:
         try:
             # Read CSV file
