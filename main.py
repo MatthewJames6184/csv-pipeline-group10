@@ -5,19 +5,19 @@ from functions.compare_expected_vs_actual import compare_expected_vs_actual_outp
 from functions.commit_results import commit_results_to_repository
 
 if __name__ == "__main__":
-    print("🔍 Scanning input folder...")
+    print("Scanning input folder...")
     csv_files = scan_input_folder_for_new_csv()
 
-    print("⚙️ Processing CSV files...")
+    print("Processing CSV files...")
     auto_process_all_csv_files()
 
-    print("🗂️ Versioning output files...")
+    print("Versioning output files...")
     version_output_files(csv_files)
 
-    print("✅ Comparing expected vs actual...")
+    print("Comparing expected vs actual...")
     compare_expected_vs_actual_output()
 
-    print("📤 Committing results...")
+    print("Committing results...")
     commit_results_to_repository()
 
-    print("🎉 Pipeline complete!")
+    print("Pipeline complete!")
