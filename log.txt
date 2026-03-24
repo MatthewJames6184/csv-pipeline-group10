@@ -71,3 +71,37 @@
 2026-03-24 12:34:28,685 | INFO | functions.commit_results | Results committed and pushed
 2026-03-24 12:34:28,685 | INFO | __main__ | Pipeline complete
 2026-03-24 12:34:29,170 | INFO | functions.scan_input_folder | Found CSV files in input folder: ['timezone.csv', 'day.csv', 'month.csv', 'sample.csv', 'jonas.csv']
+2026-03-24 12:36:00,817 | INFO | __main__ | Scanning input folder
+2026-03-24 12:36:00,817 | INFO | functions.scan_input_folder | Found CSV files in input folder: ['timezone.csv', 'day.csv', 'month.csv', 'sample.csv', 'jonas.csv', 'year-future.csv']
+2026-03-24 12:36:00,817 | INFO | __main__ | Processing CSV files
+2026-03-24 12:36:00,824 | INFO | functions.auto_process_all_csv | Processed timezone.csv to processed_timezone.csv (481 rows, 0 removed)
+2026-03-24 12:36:00,827 | INFO | functions.auto_process_all_csv | Processed day.csv to processed_day.csv (31 rows, 0 removed)
+2026-03-24 12:36:00,830 | INFO | functions.auto_process_all_csv | Processed month.csv to processed_month.csv (12 rows, 0 removed)
+2026-03-24 12:36:00,832 | INFO | functions.auto_process_all_csv | Processed sample.csv to processed_sample.csv (5 rows, 3 removed)
+2026-03-24 12:36:00,835 | INFO | functions.auto_process_all_csv | Processed jonas.csv to processed_jonas.csv (5 rows, 1 removed)
+2026-03-24 12:36:00,837 | INFO | functions.auto_process_all_csv | Processed year-future.csv to processed_year-future.csv (101 rows, 0 removed)
+2026-03-24 12:36:00,837 | INFO | __main__ | Versioning output files
+2026-03-24 12:36:00,837 | INFO | functions.version_output_files | Versioned processed_timezone.csv to timezone_20260324_123600.csv
+2026-03-24 12:36:00,837 | INFO | functions.version_output_files | Versioned processed_day.csv to day_20260324_123600.csv
+2026-03-24 12:36:00,838 | INFO | functions.version_output_files | Versioned processed_month.csv to month_20260324_123600.csv
+2026-03-24 12:36:00,838 | INFO | functions.version_output_files | Versioned processed_sample.csv to sample_20260324_123600.csv
+2026-03-24 12:36:00,838 | INFO | functions.version_output_files | Versioned processed_jonas.csv to jonas_20260324_123600.csv
+2026-03-24 12:36:00,838 | INFO | functions.version_output_files | Versioned processed_year-future.csv to year-future_20260324_123600.csv
+2026-03-24 12:36:00,838 | INFO | __main__ | Comparing expected vs actual
+2026-03-24 12:36:00,840 | INFO | functions.compare_expected_vs_actual | timezone.csv: 481 rows preserved
+2026-03-24 12:36:00,840 | INFO | functions.compare_expected_vs_actual | timezone.csv: Processing metadata added
+2026-03-24 12:36:00,841 | INFO | functions.compare_expected_vs_actual | day.csv: 31 rows preserved
+2026-03-24 12:36:00,841 | INFO | functions.compare_expected_vs_actual | day.csv: Processing metadata added
+2026-03-24 12:36:00,842 | INFO | functions.compare_expected_vs_actual | month.csv: 12 rows preserved
+2026-03-24 12:36:00,843 | INFO | functions.compare_expected_vs_actual | month.csv: Processing metadata added
+2026-03-24 12:36:00,844 | INFO | functions.compare_expected_vs_actual | sample.csv: 8 -> 5 rows (data cleaning applied)
+2026-03-24 12:36:00,844 | INFO | functions.compare_expected_vs_actual | sample.csv: Processing metadata added
+2026-03-24 12:36:00,845 | INFO | functions.compare_expected_vs_actual | jonas.csv: 6 -> 5 rows (data cleaning applied)
+2026-03-24 12:36:00,845 | INFO | functions.compare_expected_vs_actual | jonas.csv: Processing metadata added
+2026-03-24 12:36:00,846 | INFO | functions.compare_expected_vs_actual | year-future.csv: 101 rows preserved
+2026-03-24 12:36:00,846 | INFO | functions.compare_expected_vs_actual | year-future.csv: Processing metadata added
+2026-03-24 12:36:00,846 | INFO | functions.compare_expected_vs_actual | All comparisons passed
+2026-03-24 12:36:00,846 | INFO | __main__ | Committing results
+2026-03-24 12:36:01,002 | INFO | functions.commit_results | Results committed and pushed
+2026-03-24 12:36:01,002 | INFO | __main__ | Pipeline complete
+2026-03-24 12:36:01,589 | INFO | functions.scan_input_folder | Found CSV files in input folder: ['timezone.csv', 'day.csv', 'month.csv', 'sample.csv', 'jonas.csv', 'year-future.csv']
