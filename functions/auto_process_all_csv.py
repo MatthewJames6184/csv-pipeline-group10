@@ -1,6 +1,10 @@
 import os
 import pandas as pd
 from datetime import datetime
+from functions.logger import get_logger
+
+
+logger = get_logger(__name__)
 
 def auto_process_all_csv_files():
     input_folder = "input"
@@ -39,9 +43,15 @@ def auto_process_all_csv_files():
             
             rows_processed = len(df)
             rows_removed = original_rows - rows_processed
-            print(f"Processed: {file} → processed_{file} ({rows_processed} rows, {rows_removed} removed)")
+            logger.info(
+                "Processed %s to processed_%s (%s rows, %s removed)",
+                file,
+                file,
+                rows_processed,
+                rows_removed,
+            )
             
         except Exception as e:
-            print(f"Error processing {file}: {e}")
+            logger.exception("Error processing %s: %s", file, e)
     
     return csv_files
