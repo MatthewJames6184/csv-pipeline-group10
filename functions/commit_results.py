@@ -20,6 +20,7 @@ def commit_results_to_repository():
         # Add output and versions folders
         subprocess.run(["git", "add", "output/"], check=True)
         subprocess.run(["git", "add", "versions/"], check=True)
+        subprocess.run(["git", "add", "log.txt"], check=True)
         
         # Commit changes
         result = subprocess.run(
