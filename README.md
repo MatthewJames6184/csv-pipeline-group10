@@ -35,6 +35,7 @@ csv-pipeline-group10/
 │   ├── version_output_files.py                 # Archive processed files
 │   ├── compare_expected_vs_actual.py           # Validation & verification
 │   ├── commit_results.py                       # Git automation
+│   ├── logger.py                               # Shared logging configuration
 │   └── __init__.py
 ├── input/                 # CSV input files
 ├── output/                # Processed CSV files
@@ -101,9 +102,36 @@ def compare_expected_vs_actual_output()
 def commit_results_to_repository()
 ```
 - Stages `output/` and `versions/` folders
+- Stages `output/`, `versions/`, and `log.txt`
 - Creates automated commit with message: `"Auto: commit processed output files [skip ci]"`
 - Pushes changes to remote repository
 - Gracefully handles non-git environments (CI-safe)
+
+### 6. **logger.py** - Shared Logging Utilities
+```python
+def _configure_logging() -> None
+def get_logger(name: str) -> logging.Logger
+```
+- Configures a single root file logger that writes to `log.txt`
+- Applies consistent log format: `timestamp | level | logger name | message`
+- Exposes `get_logger(...)` for all modules so logs are centralized
+- Uses an internal guard to avoid duplicate logger handlers
+
+## Full Function Inventory (Current Codebase)
+
+The following function definitions currently exist in the repository:
+
+### Runtime pipeline and support functions
+- `functions/scan_input_folder.py`: `scan_input_folder_for_new_csv(input_folder="input")`
+- `functions/auto_process_all_csv.py`: `auto_process_all_csv_files()`
+- `functions/version_output_files.py`: `version_output_files(csv_files: List[str]) -> None`
+- `functions/compare_expected_vs_actual.py`: `compare_expected_vs_actual_output()`
+- `functions/commit_results.py`: `commit_results_to_repository()`
+- `functions/logger.py`: `_configure_logging() -> None` *(internal helper)*
+- `functions/logger.py`: `get_logger(name: str) -> logging.Logger`
+
+### Test function
+- `tests/test_functions.py`: `test_scan_returns_list()`
 
 ## Installation
 
@@ -185,6 +213,9 @@ Generate coverage report:
 ```bash
 pytest --cov=functions tests/
 ```
+
+Current test module includes:
+- `test_scan_returns_list()` in `tests/test_functions.py`
 
 ## Contributing
 
