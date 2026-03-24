@@ -2,6 +2,10 @@ from typing import List
 import os
 import shutil
 from datetime import datetime
+from functions.logger import get_logger
+
+
+logger = get_logger(__name__)
 
 
 def version_output_files(csv_files: List[str]) -> None:
@@ -26,8 +30,8 @@ def version_output_files(csv_files: List[str]) -> None:
 			
 			# Copy to versions folder
 			shutil.copy2(source_path, version_path)
-			print(f"Versioned: {processed_file} → {versioned_file}")
+			logger.info("Versioned %s to %s", processed_file, versioned_file)
 		else:
-			print(f"Warning: {processed_file} not found for versioning")
+			logger.warning("%s not found for versioning", processed_file)
 	
 	return None

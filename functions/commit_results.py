@@ -1,5 +1,9 @@
 import subprocess
 import os
+from functions.logger import get_logger
+
+
+logger = get_logger(__name__)
 
 def commit_results_to_repository():
     try:
@@ -10,7 +14,7 @@ def commit_results_to_repository():
         )
         
         if result.returncode != 0:
-            print("Not in a git repository. Skipping commit.")
+            logger.warning("Not in a git repository. Skipping commit")
             return
         
         # Add output and versions folders
@@ -25,7 +29,7 @@ def commit_results_to_repository():
         
         # Check commit result
         if "nothing to commit" in result.stdout or "nothing to commit" in result.stderr:
-            print("Nothing new to commit.")
+            logger.info("Nothing new to commit")
         else:
             # Push changes
             push_result = subprocess.run(
@@ -34,11 +38,11 @@ def commit_results_to_repository():
             )
             
             if push_result.returncode == 0:
-                print("✅ Results committed and pushed.")
+                logger.info("Results committed and pushed")
             else:
-                print(f"Push failed: {push_result.stderr}")
+                logger.error("Push failed: %s", push_result.stderr)
                 
     except subprocess.CalledProcessError as e:
-        print(f"Git error (expected in CI, safe to ignore): {e}")
+        logger.error("Git error (expected in CI, safe to ignore): %s", e)
     except FileNotFoundError:
-        print("Git command not found. Skipping commit.")
+        logger.warning("Git command not found. Skipping commit")
